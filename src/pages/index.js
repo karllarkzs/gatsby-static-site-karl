@@ -31,7 +31,8 @@ class BlogIndex extends React.Component {
                   </Link>
                 </h3>
               </header>
-              <section> 
+              <section>
+                <p>Author: {node.author}</p>
                 <p>{node.subtitle}</p>
               </section>
             </article>
@@ -58,6 +59,9 @@ export const pageQuery = graphql`
           subtitle
           author
           slug
+          image {
+        id
+      }
         }
       }
     }

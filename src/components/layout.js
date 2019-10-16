@@ -27,6 +27,7 @@ class Layout extends React.Component {
             to={`/`}
           >
             {title}
+            
           </Link>
         </h1>
       )
@@ -63,9 +64,10 @@ class Layout extends React.Component {
         <header>{header}</header>
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          {new Date().getMonth()}/ 
+          {new Date().getDate()}/ 
+          {new Date().getFullYear()}.  
+          {`  Date for today`}
         </footer>
       </div>
     )
