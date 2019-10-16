@@ -25,4 +25,4 @@ jobs:
           command: echo "test"
       - run:
           name: Firebase Deploy
-          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+          command: Firebase Deploy
