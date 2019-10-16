@@ -25,4 +25,4 @@ jobs:
           command: echo "test"
       - run:
           name: Firebase Deploy
-          command: firebase deploy --token "$FIREBASE_TOKEN"
+          command: firebase deploy --token=$FIREBASE_TOKEN
