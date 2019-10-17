@@ -31,10 +31,7 @@ jobs:
       - run:
           name: Gatsby Build
           command: ./node_modules/.bin/gatsby build
-
-       - run:
-          name: Firebase build
-          command: firebase deploy     
+      
       - run:
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
