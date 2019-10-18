@@ -3,9 +3,12 @@ jobs:
   build:
     docker: 
       - image: circleci/node:10
+
     working_directory: ~/repo
+
     steps:
       - checkout
+      
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -28,10 +31,10 @@ jobs:
       - run:
           name: Gatsby Build
           command: ./node_modules/.bin/gatsby build
-     - run:
-          name: Gatsby Deploy
-          command: gatsby develop     
-      
+
+       - run:
+          name: Firebase build
+          command: firebase deploy     
       - run:
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
