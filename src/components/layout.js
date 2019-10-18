@@ -63,10 +63,11 @@ class Layout extends React.Component {
       >
         <header>{header}
         <p>
+             {`Date for today: `}
         {new Date().getMonth()}/ 
           {new Date().getDate()}/ 
           {new Date().getFullYear()}.  
-          {`  Date for today`}
+          
           </p>
         </header>
         <main>{children}</main>
