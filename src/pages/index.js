@@ -10,7 +10,7 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
-    const posts = data.allContentfulPost.edges
+    const posts = data.allContentfulBlogPost.edges
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -32,8 +32,12 @@ class BlogIndex extends React.Component {
                 </h3>
               </header>
               <section>
-                <p>Author: {node.author}</p>
-                <p>{node.subtitle}</p>
+                <p>Author: {node.author.name}</p>
+                 <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.description.description || node.excerpt,
+                  }}
+                />
               </section>
             </article>
           )
@@ -52,16 +56,19 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPost {
+    allContentfulBlogPost {
       edges {
         node {
-          title
-          subtitle
-          author
+          id
           slug
-          image {
-        id
-      }
+          title
+          author{
+            name
+          }
+           
+           description {
+            description
+          }
         }
       }
     }
