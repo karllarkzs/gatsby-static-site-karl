@@ -8,15 +8,16 @@ import { rhythm } from "../utils/typography"
 
 class BlogPostContentfulTemplate extends React.Component {
   render() {
-    const post = this.props.data.contentfulPost
+    const post = this.props.data.contentfulBlogPost
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    const body = post.body.childMarkdownRemark.html
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title={post.title}
-          description={post.subtitle}
+          description={post.description.description || post.excerpt}
 
         />
         <article>
@@ -29,8 +30,9 @@ class BlogPostContentfulTemplate extends React.Component {
             >
               {post.title}
             </h1>
+            <p> Date: {post.publishDate}</p>
           </header>
-          <section dangerouslySetInnerHTML={{ __html: post.content.childContentfulRichText.html }} />
+          <section dangerouslySetInnerHTML={{ __html: body }} />
           <hr
             style={{
               marginBottom: rhythm(1),
@@ -75,21 +77,27 @@ class BlogPostContentfulTemplate extends React.Component {
 export default BlogPostContentfulTemplate
 
 export const pageQuery = graphql`
-  query ContentfulBlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
         title
-        author
+         author
       }
     }
-    contentfulPost( slug: { eq: $slug}){
+    contentfulBlogPost( slug: { eq: $slug}){
+      id
+      slug
       title
-      author
-      content{
-        childContentfulRichText{
-          html
-        }
+         body {
+        childMarkdownRemark {
+            excerpt
+            html
+          }
       }
-    }
+        description{
+        description
+      }
+      publishDate
+      }
   }
 `
