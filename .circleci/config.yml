@@ -23,7 +23,7 @@ jobs:
           command: npm install
       - run:
           name: Build
-          command: npm run buil             
+          command: npm run build             
       - run:
           name: Gatsby Build
           command: ./node_modules/.bin/gatsby build     
