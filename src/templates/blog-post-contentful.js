@@ -29,8 +29,9 @@ class BlogPostContentfulTemplate extends React.Component {
               }}
             >
               {post.title}
+              
             </h1>
-            <p> Date: {post.publishDate}</p>
+            <p>Date: {post.publishDate}</p>
           </header>
           <section dangerouslySetInnerHTML={{ __html: body }} />
           <hr
